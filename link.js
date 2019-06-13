@@ -206,6 +206,21 @@ function main()
   }
   console.log(reverseList(SLL));
 
+  function find3FromLast(SLL){
+
+    if (SLL.head === null) return new Error('No List');
+    const length = sizer(SLL);
+    if (length < 3) return new Error('Not Possible');
+    
+    const thirdFromEnd = length - 3;
+    let tempNode = Sll.head;
+    let counter = 0;
+
+    while (counter < thirdFromEnd){
+      tempNode = tempNode.next;
+      counter++;
+    }
+    return tempNode
 }
 
 
@@ -232,4 +247,8 @@ function WhatDoesThisProgramDo(lst) {
 
 //removes duplicates if they have the same value
 
+function find3FromLast(SLL){
+  const length = sizer(SLL);
 
+
+  }
