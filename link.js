@@ -1,4 +1,139 @@
 'use strict';
+
+class _DNode {
+    constructor (value, next, previous){
+      this.value = value;
+      this.next = next;
+      this.previos = previous;
+    }
+  
+  
+  }
+  
+  class DLL {
+    constructor (){
+      this.head = null;
+    }
+  
+    insertFirst(value){
+      this.head = new _Node(value, this.head);
+    }
+  
+    insertLast(value){
+      let tempNode = this.head;
+      while (tempNode.next !== null){
+        tempNode = tempNode.next;
+
+      }
+      tempNode.next= new _Node(value, null);
+      tempNode.next.previous = tempNode;
+    }
+
+   
+
+    insertAfter(key, value){
+
+            let tempNode = this.head;
+            let prevNode ='';
+            while (tempNode!==null){
+              tempNode = tempNode.next;
+              prevNode = tempNode;
+            }
+
+            const temptempNode = tempNode.next;
+            tempNode.next = new _Node(value, tempNode.next);
+            tempNode.next.previous = tempNode;
+            tempNode.next.next = temptempNode;
+            temptempNode.previous = tempNode.next; 
+          
+    }
+
+    insertAt(n, value)
+    {    
+        if (n<0)
+            return;
+        if (n===0)
+        {
+            this.insertFirst(value)
+        }
+        let counter = 1;
+        let tempNode = this.head;
+        let prevNode ='';
+        while (tempNode!==null && counter < n){
+          tempNode = tempNode.next;
+          prevNode = tempNode;
+          counter++;
+        }
+        if (counter!==n)
+            return;
+
+        const temptempNode = tempNode.next;
+        tempNode.next = new _Node(value, tempNode.next);
+        tempNode.next.previous = tempNode;
+        tempNode.next.next = temptempNode;
+        temptempNode.previous = tempNode.next; 
+    }
+
+  
+    remove(value){
+      if (this.head === null) return new Error('Youre an idiot');
+  
+      if (this.head.value === value){
+        this.head = this.head.next;
+      } else {
+  
+        let tempNode = this.head;
+        let prevNode =this.head;
+        while (tempNode!==null && tempNode.value !== value){
+          prevNode = tempNode;
+          tempNode = tempNode.next;
+        }
+        if (tempNode === null) {
+          return new Error('Youre an idiot');
+        }
+        prevNode.next = tempNode.next; 
+        tempNode.next.previous = prevNode;
+      }
+    }
+  
+    find(value){
+      if (this.head === null) return new Error('Empty List');
+  
+      if (this.head.value === value){
+        return this.head;
+      } else {
+        let tempNode = this.head;
+  
+        while (tempNode && tempNode.value !== value){
+          tempNode = tempNode.next;
+        }
+        if (tempNode === null) {
+          return new Error('Youre an idiot');
+        }
+        return tempNode;
+      }
+    }
+
+
+    reverseList()
+    {
+        if (this.head === null) return new Error('Empty List');
+        let tempNode = this.head;
+        while (tempNode){
+            const temptempNode = tempNode.next;
+            tempNode.previous = tempNode.next;
+            tempNode.next = tempNode.previous;
+            tempNode = temptempNode;
+          }
+        this.head = tempNode; 
+        return;
+    } 
+  }
+
+
+
+
+
 class _Node {
   constructor (value, next){
     this.value = value;
@@ -222,6 +357,13 @@ function main()
     }
     return tempNode;
   }
+  
+      function findMiddle(SLL){
+
+        const middle = Math.ceil(sizer(SLL)/2);
+        return middle;
+    }
+  
 }
 
 
@@ -257,6 +399,8 @@ function cylceList(list){
     }
     current = current.next;
   }
+  
+  
 }
 
 
