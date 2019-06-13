@@ -213,14 +213,15 @@ function main()
     if (length < 3) return new Error('Not Possible');
     
     const thirdFromEnd = length - 3;
-    let tempNode = Sll.head;
+    let tempNode = SLL.head;
     let counter = 0;
 
     while (counter < thirdFromEnd){
       tempNode = tempNode.next;
       counter++;
     }
-    return tempNode
+    return tempNode;
+  }
 }
 
 
@@ -244,11 +245,18 @@ function WhatDoesThisProgramDo(lst) {
 }
 
 
+function cylceList(list){
+  if (list.head === null) return 'error';
 
-//removes duplicates if they have the same value
+  let current = list.head;
+  const check = [];
 
-function find3FromLast(SLL){
-  const length = sizer(SLL);
-
-
+  while (current !== null){
+    if (check.includes(current.value)){ 
+      return `${current} is a duplicate node`;
+    }
+    current = current.next;
   }
+}
+
+
